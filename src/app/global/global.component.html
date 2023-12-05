@@ -1,3 +1,12 @@
-<p>{{pregunta.pregunta}}</p>
-<p>{{pregunta.posibles}}</p>
+<!-- global.component.html -->
+<p>{{ pregunta.pregunta }}</p>
 
+<div *ngFor="let respuesta of pregunta.posibles; let i = index">
+    <input type="radio" name="respuesta" [value]="respuesta" (change)="actualizarRespuestaSeleccionada(i)">
+    {{ respuesta }}
+</div>
+
+<button (click)="comprobarSiEsCorrecto()">Comprobar</button>
+
+<p *ngIf="esCorrecta === true">¡Respuesta correcta!</p>
+<p *ngIf="esCorrecta === false && respuestaSeleccionada !== undefined">Respuesta incorrecta. Inténtalo de nuevo.</p>
